@@ -50,11 +50,15 @@
    https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/custom-rules.conf
    ```
 
-2. 打开 Shadowrocket，进入 `配置`。
-3. 点击右上角 `+`，粘贴链接并下载。
-4. 点击已下载的配置，设为使用中。
-5. 回到首页添加自己的节点或订阅。
-6. 执行连通性测试，选择可用节点连接。
+2. 或者直接扫描二维码导入：
+
+   ![扫码导入 Shadowrocket 配置](https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=https%3A%2F%2Fraw.githubusercontent.com%2FKleinBrey%2Fnet-rules%2Frefs%2Fheads%2Fmain%2Fcustom-rules.conf)
+
+3. 打开 Shadowrocket，进入 `配置`。
+4. 点击右上角 `+`，粘贴链接并下载。
+5. 点击已下载的配置，设为使用中。
+6. 回到首页添加自己的节点或订阅。
+7. 执行连通性测试，选择可用节点连接。
 
 如果只想引用 AI 规则集，可使用：
 
