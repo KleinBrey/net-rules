@@ -1,0 +1,19 @@
+# NAME: US Broker
+# DESC: US broker services for IBKR, Schwab, and Firstrade
+
+# IBKR - websites, Client Portal, API, TWS, and IB Gateway
+DOMAIN-KEYWORD,interactivebrokers
+DOMAIN-KEYWORD,ibkr
+DOMAIN-SUFFIX,ibllc.com
+DOMAIN-SUFFIX,ibllc.com.cn
+
+# Schwab
+DOMAIN-SUFFIX,schwab.com
+DOMAIN-SUFFIX,schwab.com.cn
+DOMAIN-SUFFIX,schwab.com.hk
+DOMAIN-SUFFIX,schwab.co.uk
+DOMAIN-SUFFIX,thinkorswim.com
+
+# Firstrade - website, login, mobile services, and help center
+DOMAIN-SUFFIX,firstrade.com
+DOMAIN-SUFFIX,firstrade.info
