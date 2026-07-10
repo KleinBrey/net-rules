@@ -1,6 +1,6 @@
 # Shadowrocket 网络规则
 
-一套面向日常使用的 Shadowrocket 分流配置。境外服务和 AI 服务默认走代理，国内服务、局域网、Apple / iCloud 及券商服务优先直连。
+一套面向日常使用的 Shadowrocket 分流配置。境外服务和 AI 服务默认走代理，国内服务、局域网与 Apple / iCloud 优先直连，并为美国、香港券商提供独立策略。
 
 > 本仓库只提供配置和规则，不包含代理节点或订阅。
 
@@ -8,7 +8,7 @@
 
 - 轻量主配置：不内置策略组，直接使用 Shadowrocket 的 `PROXY` / `DIRECT` 策略。
 - AI 服务覆盖：支持 OpenAI、Claude、Gemini、Copilot、Grok、Perplexity 等常用服务。
-- 券商规则拆分：美国券商覆盖 IBKR、Schwab、Firstrade；香港券商覆盖富途 / Moomoo、长桥和老虎证券。
+- 券商策略拆分：Firstrade 走代理；IBKR、Schwab 及香港券商走直连。
 - 国内外分流：常用境外服务走代理，国内服务与中国大陆 IP 优先直连。
 - 网络稳定性优化：使用 DNSPod / AliDNS，并对代理连接屏蔽 QUIC。
 - Google 防跳转：将 `google.cn` 和 `g.cn` 重定向至 `google.com`。
@@ -17,10 +17,11 @@
 
 | 文件 | 说明 | 使用方式 |
 | --- | --- | --- |
-| [`custom-rules.conf`](./custom-rules.conf) | 推荐使用的主配置 | 直接导入 Shadowrocket |
+| [`shadowrocket.conf`](./shadowrocket.conf) | 推荐使用的主配置 | 直接导入 Shadowrocket |
 | [`AI.list`](./AI.list) | 自维护 AI 服务规则集 | 已被主配置引用，也可单独引用 |
-| [`US_Broker.list`](./US_Broker.list) | 自维护美国券商规则集 | IBKR、Schwab、Firstrade |
-| [`HK_Broker.list`](./HK_Broker.list) | 自维护香港券商规则集 | 富途 / Moomoo、长桥、老虎证券 |
+| [`Broker_US_Proxy.list`](./Broker_US_Proxy.list) | 美国券商代理规则集 | Firstrade，主配置使用 `PROXY` |
+| [`Broker_US_Direct.list`](./Broker_US_Direct.list) | 美国券商直连规则集 | IBKR、Schwab，主配置使用 `DIRECT` |
+| [`Broker_HK.list`](./Broker_HK.list) | 香港券商直连规则集 | 富途 / Moomoo、长桥、老虎证券，主配置使用 `DIRECT` |
 | [`lazy.conf`](./lazy.conf) | 带完整注释的扩展配置 | 用于查阅参数或需要更多娱乐、游戏规则时使用 |
 
 ## 快速开始
@@ -30,7 +31,7 @@
 复制主配置地址：
 
 ```text
-https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/custom-rules.conf
+https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/shadowrocket.conf
 ```
 
 然后在 Shadowrocket 中依次操作：
@@ -45,7 +46,7 @@ https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/custom-rul
 
 ### 扫码导入
 
-![扫码导入 Shadowrocket 配置](https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=https%3A%2F%2Fraw.githubusercontent.com%2FKleinBrey%2Fnet-rules%2Frefs%2Fheads%2Fmain%2Fcustom-rules.conf)
+![扫码导入 Shadowrocket 配置](https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=https%3A%2F%2Fraw.githubusercontent.com%2FKleinBrey%2Fnet-rules%2Frefs%2Fheads%2Fmain%2Fshadowrocket.conf)
 
 ## 分流策略
 
@@ -58,15 +59,16 @@ https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/custom-rul
 | 3 | Steam、GitHub、Microsoft、Google | `PROXY` |
 | 4 | Apple / iCloud | `DIRECT` |
 | 5 | Bilibili、微信、小红书、网易云音乐 | `DIRECT` |
-| 6 | 美国券商：IBKR、Schwab、Firstrade | `DIRECT` |
-| 7 | 香港券商：富途 / Moomoo、长桥、老虎证券 | `DIRECT` |
-| 8 | 战网、抖音 | `DIRECT` |
-| 9 | TikTok | `PROXY` |
-| 10 | Global 规则集 | `PROXY` |
-| 11 | China 规则集 | `DIRECT` |
-| 12 | 局域网 | `DIRECT` |
-| 13 | 中国大陆 IP（`GEOIP,CN`） | `DIRECT` |
-| 14 | 其余未匹配流量 | `PROXY` |
+| 6 | 美国券商：Firstrade | `PROXY` |
+| 7 | 美国券商：IBKR、Schwab | `DIRECT` |
+| 8 | 香港券商：富途 / Moomoo、长桥、老虎证券 | `DIRECT` |
+| 9 | 战网、抖音 | `DIRECT` |
+| 10 | TikTok | `PROXY` |
+| 11 | Global 规则集 | `PROXY` |
+| 12 | China 规则集 | `DIRECT` |
+| 13 | 局域网 | `DIRECT` |
+| 14 | 中国大陆 IP（`GEOIP,CN`） | `DIRECT` |
+| 15 | 其余未匹配流量 | `PROXY` |
 
 ## 独立规则集
 
@@ -78,19 +80,25 @@ https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/custom-rul
 https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/AI.list
 ```
 
-### 美国券商
+### 美国券商（代理）
 
 ```text
-https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/US_Broker.list
+https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/Broker_US_Proxy.list
 ```
 
-### 香港券商
+### 美国券商（直连）
 
 ```text
-https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/HK_Broker.list
+https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/Broker_US_Direct.list
 ```
 
-引用时请选择 `RULE-SET` 类型，并根据需要设置 `PROXY` 或 `DIRECT` 策略。主配置默认将 AI 服务设为 `PROXY`，美国和香港券商服务设为 `DIRECT`。
+### 香港券商（直连）
+
+```text
+https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/Broker_HK.list
+```
+
+引用时请选择 `RULE-SET` 类型，并设置与文件名对应的策略。主配置默认将 AI 和 `Broker_US_Proxy.list` 设为 `PROXY`，将 `Broker_US_Direct.list` 和 `Broker_HK.list` 设为 `DIRECT`。
 
 ## 主要配置
 
@@ -108,13 +116,14 @@ https://raw.githubusercontent.com/KleinBrey/net-rules/refs/heads/main/HK_Broker.
 ## 规则来源
 
 - `AI.list`：本仓库维护。
-- `US_Broker.list`：本仓库维护的美国券商规则。
-- `HK_Broker.list`：本仓库维护的香港券商规则。
+- `Broker_US_Proxy.list`：本仓库维护的美国券商代理规则。
+- `Broker_US_Direct.list`：本仓库维护的美国券商直连规则。
+- `Broker_HK.list`：本仓库维护的香港券商直连规则。
 - [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)：常用服务、国内外域名及局域网规则。
 
 ## 更新与维护
 
-- 修改 `AI.list`、`US_Broker.list` 或 `HK_Broker.list` 后，需要将文件提交并推送到 GitHub，远程 Raw 地址才会更新。
+- 修改 `AI.list` 或任一 `Broker_*.list` 后，需要将文件提交并推送到 GitHub，远程 Raw 地址才会更新。
 - 在 Shadowrocket 中点击对应配置并选择 **更新配置**，可获取最新主配置。
 - 外部规则集会随上游项目更新，出现异常分流时可在 Shadowrocket 的请求日志中检查实际命中的规则。
 - 新增规则时应优先使用精确的 `DOMAIN` 或 `DOMAIN-SUFFIX`；仅在域名结构不固定时使用 `DOMAIN-KEYWORD`。

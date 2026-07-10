@@ -1,0 +1,5 @@
+# NAME: US Broker
+# DESC: US broker services for Firstrade
+
+DOMAIN-SUFFIX,firstrade.com
+DOMAIN-SUFFIX,firstrade.info
