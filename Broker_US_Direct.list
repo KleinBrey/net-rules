@@ -1,17 +1,13 @@
 # NAME: US Broker
 # DESC: US broker services routed directly for IBKR and Schwab
 
-# IBKR - websites, Client Portal, API, TWS, and IB Gateway
+# IBKR
 DOMAIN-KEYWORD,interactivebrokers
 DOMAIN-KEYWORD,ibkr
 DOMAIN-SUFFIX,ibllc.com
 DOMAIN-SUFFIX,ibllc.com.cn
 
 # Schwab
-DOMAIN-SUFFIX,schwab.com
-DOMAIN-SUFFIX,schwab.com.cn
-DOMAIN-SUFFIX,schwab.com.hk
-DOMAIN-SUFFIX,schwab.co.uk
-DOMAIN-SUFFIX,thinkorswim.com
-DOMAIN-SUFFIX,schwabapi.com
-DOMAIN-SUFFIX,schwabcdn.com
+DOMAIN-KEYWORD,thinkorswim
+DOMAIN-KEYWORD,schwab
+

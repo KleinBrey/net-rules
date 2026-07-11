@@ -1,5 +1,6 @@
 # NAME: US Broker
-# DESC: US broker services for Firstrade
+# DESC: US broker services routed proxy for Firstrade
 
-DOMAIN-SUFFIX,firstrade.com
-DOMAIN-SUFFIX,firstrade.info
+# Firstrade
+DOMAIN-KEYWORD,firstrade
+
