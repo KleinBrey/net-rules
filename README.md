@@ -22,7 +22,7 @@
 | [`Broker_US_Proxy.list`](./Broker_US_Proxy.list) | 美国券商代理规则集 | Firstrade，主配置使用 `PROXY` |
 | [`Broker_US_Direct.list`](./Broker_US_Direct.list) | 美国券商直连规则集 | IBKR、Schwab，主配置使用 `DIRECT` |
 | [`Broker_HK.list`](./Broker_HK.list) | 香港券商直连规则集 | 富途 / Moomoo、长桥、老虎证券，主配置使用 `DIRECT` |
-| [`lazy.conf`](./lazy.conf) | 带完整注释的扩展配置 | 用于查阅参数或需要更多娱乐、游戏规则时使用 |
+| [`base.conf`](./base.conf) | 带完整注释的扩展配置 | 用于查阅参数或需要更多娱乐、游戏规则时使用 |
 
 ## 快速开始
 
