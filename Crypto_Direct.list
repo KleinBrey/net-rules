@@ -1,0 +1,34 @@
+#!name=Crypto
+#!desc=Crypto 直连规则集
+# 地址：https://raw.githubusercontent.com/iab0x00/ProxyRules/main/Rule/Crypto.txt
+# 地址：https://raw.githubusercontent.com/LOWERTOP/Shadowrocket-First/main/okx.list
+
+
+# Binance
+DOMAIN-SUFFIX,binance.com
+DOMAIN-SUFFIX,binance.info
+DOMAIN-SUFFIX,binance.org
+DOMAIN-SUFFIX,bnbstatic.com
+DOMAIN-SUFFIX,bntrace.com
+DOMAIN-SUFFIX,bsappapi.com
+DOMAIN-SUFFIX,bscdnweb.com
+DOMAIN-SUFFIX,yingwangtech.cloud
+
+# OKX
+DOMAIN-SUFFIX,api.amplitudeexperiment.com
+DOMAIN-SUFFIX,api.onesignal.com
+DOMAIN-SUFFIX,appsflyersdk.com
+DOMAIN-SUFFIX,cnouyi.pizza
+DOMAIN-SUFFIX,coinall.ltd
+DOMAIN-SUFFIX,d1w1p0smpsoh5j.cloudfront.net
+DOMAIN-SUFFIX,firebase-settings.crashlytics.com
+DOMAIN-SUFFIX,geetest.com
+DOMAIN-SUFFIX,in.appcenter.ms
+DOMAIN-SUFFIX,kjmte.com
+DOMAIN-SUFFIX,okex.com
+DOMAIN-SUFFIX,oklink.com
+DOMAIN-SUFFIX,okx-dns.com
+DOMAIN-SUFFIX,okx-dns1.com
+DOMAIN-SUFFIX,okx.com
+DOMAIN-SUFFIX,okx.com.cdn.cloudflare.net
+DOMAIN-KEYWORD,liuyimin4
